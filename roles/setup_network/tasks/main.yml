@@ -1,1 +1,2 @@
 - include: setup_auth.yml
+- include: disable_pwd_auth.yml
