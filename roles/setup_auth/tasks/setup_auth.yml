@@ -1,0 +1,53 @@
+- name: "Update Apt Cache"
+  apt:
+    update_cache: yes
+    upgrade: dist
+  tags: update_apt
+
+- name: "Install Common packages"
+  apt:
+    name: ['nano', 'htop', 'git', 'screen', 'net-tools']
+    state: latest
+  tags: install_applications
+
+- name: "updating hostname to homeserver (1/2)"
+  hostname:
+    name: "homeserver"
+  register: hostname_chang
+
+- name: "updating hostname homeserver (2/2)"
+  copy:
+    content: "homeserver{{'\n'}}"
+    dest: /etc/hostname
+    backup: true
+  register: hostname_chang
+
+- name: "update /etc/hosts"
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '^127\.0\.0\.1'
+    line: "127.0.0.1{{'\t'}}homeserver"
+    backup: true
+    state: present
+
+- name: "Configure static IP in  /etc/dhcpcd.conf"
+  become: yes
+  lineinfile:
+    dest:  /etc/dhcpcd.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - { regexp: "^interface eth[0-9]$", line: "interface wlan0" }
+    - { regexp: "^static ip_address", line: "static ip_address=192.168.0.51/24" }
+    - { regexp: "^static routers", line: "static routers=192.168.1.1" }
+    - { regexp: "^static domain_name_servers", line: "static domain_name_servers=8.8.8.8" }
+  notify: reboot
+  tags: static_ip
+
+- name: Expand filesystem to fill disk
+  command: raspi-config --expand-rootfs
+  become: yes
+  notify:
+    - reboot
+  tags: expand_filesystem
