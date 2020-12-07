@@ -1,0 +1,11 @@
+---
+
+- name: Converge
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: Include homeserver
+      include_role:
+        name: homeserver
+
+...
