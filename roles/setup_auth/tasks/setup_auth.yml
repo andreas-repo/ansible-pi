@@ -44,7 +44,7 @@
     state: present
   with_items:
     - { regexp: "^interface eth[0-9]$", line: "interface wlan0" }
-    - { regexp: "^static ip_address", line: "static ip_address=192.168.0.51/24" }
+    - { regexp: "^static ip_address", line: "static ip_address=192.168.0.80/24" }
     - { regexp: "^static routers", line: "static routers=192.168.1.1" }
     - { regexp: "^static domain_name_servers", line: "static domain_name_servers=8.8.8.8" }
   notify: reboot
