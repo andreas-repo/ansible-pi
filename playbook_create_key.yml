@@ -1,0 +1,15 @@
+- name: generate SSH key
+  hosts: 127.0.0.1
+  connection: local
+
+  vars:
+    ssh_key_filename: "homeserver.id_rsa"
+  tasks:
+    - name: "generate SSH key homeserver.id_rsa"
+      openssh_keypair:
+        path: "~/.ssh/homeserver.id_rsa"
+        type: rsa
+        size: 4096
+        state: present
+        force: no
+  tags: generate_key
