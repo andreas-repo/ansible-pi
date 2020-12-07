@@ -30,6 +30,11 @@
     backup: true
     state: present
 
+- name: Expand filesystem to fill disk
+  command: raspi-config --expand-rootfs
+  become: yes
+  tags: expand_filesystem
+
 - name: "Configure static IP in  /etc/dhcpcd.conf"
   become: yes
   lineinfile:
@@ -45,9 +50,3 @@
   notify: reboot
   tags: static_ip
 
-- name: Expand filesystem to fill disk
-  command: raspi-config --expand-rootfs
-  become: yes
-  notify:
-    - reboot
-  tags: expand_filesystem
