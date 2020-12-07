@@ -1,0 +1,6 @@
+- hosts: homeserver
+  become: yes
+  roles:
+    - setup_ssh
+  tags:
+    ssh_setup

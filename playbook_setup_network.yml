@@ -1,6 +1,6 @@
 - hosts: pi
   become: yes
   roles:
-    -  setup_auth
+    -  setup_network
   tags:
-    pi_setup
+    network_setup

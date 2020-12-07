@@ -1,0 +1,13 @@
+- name: "SSH Generation"
+  shell: >
+    ssh-keygen -q -b 2048 -t rsa -N "" -C "Creating SSH" -f ~/.ssh/pi_id_rsa
+    creates="~/.ssh/pi_id_rsa
+  tags: create_key
+
+- name: "SSH public key for root access of 'pi' user with state 'present'"
+  authorized_key:
+    user: "pi"
+    state: "present"
+    key: "{{ lookup('file', '~/.ssh/pi_id_rsa.pub') }}"
+  tags: copy_key
+
