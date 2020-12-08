@@ -12,8 +12,8 @@
   tags: setup_server
 
 - name: "start services"
-    service:
-      name: {{ item }}
+  service:
+    name: {{ item }}
       state: started
       enabled: yes
       sudo: yes
