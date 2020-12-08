@@ -12,5 +12,5 @@
 - name: "Adding pi to docker group"
   become: yes
   shell:
-    cmd: usermod -aG docker Pi
+    cmd: usermod -aG docker pi
   tags: adding_pi
