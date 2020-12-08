@@ -9,6 +9,7 @@
   apt:
     name: ['apache2', 'mysql-server', 'php7.0', 'php7.0-mysql']
     state: latest
+    update_cache: yes
   tags: setup_server
 
 - name: "start services"
