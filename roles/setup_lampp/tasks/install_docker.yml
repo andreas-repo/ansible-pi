@@ -14,3 +14,9 @@
   shell:
     cmd: usermod -aG docker pi
   tags: adding_pi
+
+- name: "Pulling lampp docker image"
+  become: yes
+  shell:
+    cmd: docker pull joaquindlz/rpi-docker-lamp
+  tags: pull_lampp
