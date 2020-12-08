@@ -13,11 +13,9 @@
 
 - name: "start services"
   service:
-    name: {{ item }}
+    name: ['apache2', 'mysql']
     state: started
     enabled: yes
     sudo: yes
-    with_items:
-      - apache2
-      - mysql
+
 
