@@ -7,7 +7,7 @@
 
 - name: "install lamp stack"
   apt:
-    name: ['apache2', 'mysql-server', 'php7.0', 'php7.0-mysql']
+    name: ['apache2', 'php5', 'libapache2-mod-php5', 'php5-mysql', 'mysql-server', 'mysql-client', 'phpmyadmin']
     state: latest
     update_cache: yes
   tags: setup_server
