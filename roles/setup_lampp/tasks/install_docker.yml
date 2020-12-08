@@ -3,9 +3,14 @@
     cmd: curl -fsSL https://get.docker.com -o get-docker.sh
   tags: installation_docker
 
-
 - name: "Installation of docker"
   become: yes
   shell:
     cmd: sh get-docker.sh
   tags: installation_docker
+
+- name: "Adding pi to docker group"
+  become: yes
+  shell:
+    cmd: usermod -aG docker Pi
+  tags: addind_pi
