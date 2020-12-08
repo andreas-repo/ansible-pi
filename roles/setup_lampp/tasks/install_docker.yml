@@ -7,5 +7,5 @@
 - name: "Installation of docker"
   become: pi
   shell:
-    cmd: sudo sh get-docker.sh
+    cmd: sh get-docker.sh
   tags: installation_docker
