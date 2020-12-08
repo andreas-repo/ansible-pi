@@ -1,16 +1,17 @@
 - name: install lamp stack
-    apt: name={{ item }} state=present update_cache=yes
-    with_items:
-      - apache2
-      - mysql-server
-      - php7.0
-      - php7.0-mysql
+    apt:
+      name: ['apache2', 'mysql-server', 'php7.0', 'php7.0-mysql']
+      state: latest
+      update_cache: yes
   tags: setup_server
 
-    - name: start services
-      service: name={{ item }} state=started enabled=yes
+- name: start services
+    service:
+      name: {{ item }}
+      state: started
+      enabled: yes
       sudo: yes
-      with_items:
-        - apache2
-        - mysql
+    with_items:
+      - apache2
+      - mysql
 
