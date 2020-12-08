@@ -13,9 +13,9 @@
 
 - name: "start services"
   service:
-    name: {{ item }}
-      state: started
-      enabled: yes
+    name: {{ item }} state=started enabled=yes
+      #state: started
+      #enabled: yes
       sudo: yes
     with_items:
       - apache2
