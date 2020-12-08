@@ -4,6 +4,11 @@
 #      state: latest
 #      update_cache: yes
 #  tags: setup_server
+- name: "Update Apt Cache"
+  apt:
+    update_cache: yes
+    upgrade: dist
+  tags: update_apt
 
 - name: "install lamp stack"
   apt:
