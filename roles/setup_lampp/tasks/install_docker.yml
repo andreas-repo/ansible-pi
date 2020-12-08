@@ -1,4 +1,10 @@
-- name: "Install Docker"
+- name: "Download docker"
   shell:
-    cmd: curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+    cmd: curl -fsSL https://get.docker.com -o get-docker.sh
+  tags: installation_docker
+
+
+- name: "Installation of docker"
+  shell:
+    cmd: sudo sh get-docker.sh
   tags: installation_docker
