@@ -13,4 +13,4 @@
   become: yes
   shell:
     cmd: usermod -aG docker Pi
-  tags: addind_pi
+  tags: adding_pi
